@@ -6,26 +6,25 @@ import styles from "./ComponentPage.module.scss";
 const getComponentProps = (props) => {
   const componentProps = {};
   props.forEach((prop) => {
-    if (prop.type === "boolean") {
-      componentProps[prop.name] = prop.value === "true";
-    } else if (prop.type === "function") {
-      try {
+    if (prop.name === "" || prop.type === "" || prop.value === "") {
+      return;
+    }
+
+    try {
+      if (prop.type === "boolean") {
+        componentProps[prop.name] = prop.value === "true";
+      } else if (prop.type === "function") {
         // eslint-disable-next-line
         componentProps[prop.name] = eval(prop.value);
-      } catch (e) {
-        console.log(e);
-      }
-    } else if (prop.type === "json") {
-      try {
+      } else if (prop.type === "json") {
         componentProps[prop.name] = JSON.parse(prop.value);
-      } catch (e) {
-        console.log(e);
+      } else {
+        componentProps[prop.name] = prop.value;
       }
-    } else {
-      componentProps[prop.name] = prop.value;
+    } catch (e) {
+      console.log(e);
     }
   });
-
   return componentProps;
 };
 
@@ -51,7 +50,7 @@ const ComponentPage = () => {
       name: "style",
       type: "json",
       value:
-        '{\n  "padding": "8px",\n  "font-size": "1rem",\n  "font-weight": "bold",\n  "font-family": "serif",\n  "border-width": "2px",\n  "border-radius": "8px"\n}',
+        '{\n  "padding": "8px",\n  "fontSize": "1rem",\n  "fontWeight": "bold",\n  "fontFamily": "serif",\n  "borderWidth": "2px",\n  "borderRadius": "8px"\n}',
     },
   ]);
   const [focusNewInput, setFocusNewInput] = useState(false);
@@ -87,7 +86,7 @@ const ComponentPage = () => {
             </button>
           </div>
           {componentProps.map((prop, index) => (
-            <div>
+            <div key={`prop-${index}`}>
               <input
                 value={prop.name}
                 onChange={(e) => {
