@@ -1,0 +1,27 @@
+$font-size: 1rem;
+$top-bottom-padding: $font-size * 0.2;
+$left-right-padding: $font-size * 0.6;
+
+.HomePage {
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+  }
+
+  a {
+    display: block;
+    width: fit-content;
+    padding: $top-bottom-padding $left-right-padding;
+    font-size: $font-size;
+    border-radius: $font-size * 1.75;
+    background-color: #8bc34a;
+    color: #003d00;
+    border: 2px solid #003d00;
+    font-weight: bold;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
