@@ -1,6 +1,9 @@
 .ComponentPage {
+  max-width: 900px;
+  margin: 0 auto;
+
   h2 {
-    margin-bottom: 20px;
+    margin-bottom: 16px;
   }
 
   & > div {
@@ -34,6 +37,14 @@
           padding: 4px;
           font-size: 1rem;
           background-color: white;
+
+          &:nth-last-child(2) {
+            flex-grow: 1;
+          }
+
+          &:not(:nth-last-child(2)) {
+            max-width: 200px;
+          }
         }
 
         input,
