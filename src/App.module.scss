@@ -16,8 +16,10 @@ code {
     monospace;
 }
 
+$nav-height: 4.5rem;
+
 .MainNav {
-  height: 72px;
+  height: $nav-height;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -25,22 +27,36 @@ code {
   background-color: #283593;
   color: white;
 
-  ul {
-    list-style-type: none;
+  nav {
+    ul {
+      list-style-type: none;
 
-    li {
-      display: inline-block;
+      li {
+        display: inline-block;
 
-      a {
-        display: block;
-        padding: 12px;
-        color: white;
-        text-decoration-style: underline;
+        a {
+          display: block;
+          padding: 12px;
+          color: white;
+          text-decoration-style: underline;
+          font-size: 0.8rem;
 
-        &:hover {
-          text-decoration-style: double;
+          &:hover {
+            text-decoration-style: double;
+          }
         }
       }
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    flex-direction: column;
+    text-align: center;
+    padding: 16px;
+    height: $nav-height + 2rem + 0.8rem;
+
+    h1 {
+      font-size: 1.4rem;
     }
   }
 }
