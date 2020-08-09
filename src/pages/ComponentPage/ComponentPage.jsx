@@ -31,7 +31,7 @@ const ComponentPage = () => {
         <div className={styles.PropsContainer}>
           <h3>Props</h3>
           {Object.keys(componentProps).map((propName) => (
-            <div>
+            <div key={`prop-${propName}`}>
               <Input
                 initialValue={propName}
                 onChangeCallback={(value) => {
