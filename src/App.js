@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { AboutPage, HomePage } from "./pages";
+import { AboutPage, HomePage, ComponentPage } from "./pages";
 import styles from "./App.module.scss";
 
 export default () => (
@@ -21,6 +21,7 @@ export default () => (
     <main className={styles.MainContent}>
       <Switch>
         <Route path="/about" component={AboutPage} />
+        <Route path="/component/:name" component={ComponentPage} />
         <Route path="/" exact component={HomePage} />
       </Switch>
     </main>
