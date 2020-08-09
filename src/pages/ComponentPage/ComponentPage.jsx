@@ -9,6 +9,7 @@ const getComponentProps = (props) => {
     if (prop.type === "boolean") {
       componentProps[prop.name] = prop.value === "true";
     } else if (prop.type === "function") {
+      // eslint-disable-next-line
       componentProps[prop.name] = eval(prop.value);
     } else if (prop.type === "json") {
       try {
@@ -59,7 +60,7 @@ const ComponentPage = () => {
       inputToFocus.focus();
       setFocusNewInput(false);
     }
-  }, [focusNewInput]);
+  }, [focusNewInput, componentProps]);
 
   return (
     <div className={styles.ComponentPage}>
