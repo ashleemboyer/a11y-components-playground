@@ -49,5 +49,20 @@
         flex: 1;
       }
     }
+
+    @media only screen and (max-width: 600px) {
+      flex-direction: column;
+
+      .PropsContainer,
+      .ComponentContainer {
+        width: 100%;
+        min-height: 25vh;
+      }
+
+      .PropsContainer {
+        margin-right: 0;
+        margin-bottom: 16px;
+      }
+    }
   }
 }
