@@ -9,8 +9,12 @@ const getComponentProps = (props) => {
     if (prop.type === "boolean") {
       componentProps[prop.name] = prop.value === "true";
     } else if (prop.type === "function") {
-      // eslint-disable-next-line
-      componentProps[prop.name] = eval(prop.value);
+      try {
+        // eslint-disable-next-line
+        componentProps[prop.name] = eval(prop.value);
+      } catch (e) {
+        console.log(e);
+      }
     } else if (prop.type === "json") {
       try {
         componentProps[prop.name] = JSON.parse(prop.value);
@@ -68,7 +72,7 @@ const ComponentPage = () => {
       <div>
         <div className={styles.PropsContainer}>
           <div>
-            <h3>Props</h3>
+            <h3>Properties</h3>
             <button
               className={styles.AddButton}
               onClick={() => {
@@ -79,7 +83,7 @@ const ComponentPage = () => {
                 setFocusNewInput(true);
               }}
             >
-              Add Prop
+              Add Property
             </button>
           </div>
           {componentProps.map((prop, index) => (
@@ -126,6 +130,8 @@ const ComponentPage = () => {
                 />
               )}
               <button
+                title={`Remove "${prop.name}" prop`}
+                aria-label={`Remove ${prop.name} property`}
                 className={styles.DeleteButton}
                 onClick={() => {
                   componentProps.splice(index, 1);
