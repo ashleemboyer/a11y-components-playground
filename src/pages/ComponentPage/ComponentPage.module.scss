@@ -4,34 +4,91 @@
   }
 
   & > div {
-    display: flex;
-    justify-content: space-between;
-
     .PropsContainer,
     .ComponentContainer {
-      width: 50%;
-      min-height: 50vh;
+      width: 100%;
+      min-height: 25vh;
       border: 2px solid black;
       border-radius: 12px;
       padding: 16px;
 
-      h3 {
+      & > *:first-child {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         margin-bottom: 12px;
-      }
 
-      &:first-child {
-        margin-right: 16px;
+        .AddButton {
+          width: fit-content;
+          padding: 0 12px;
+          height: 1.8rem;
+          min-height: 1.8rem;
+          line-height: 1.8rem;
+          font-size: 1rem;
+          border-radius: 1.8rem;
+          background-color: #283593;
+          color: white;
+          border: none;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
       }
     }
 
     .PropsContainer {
+      margin-bottom: 32px;
+
       & > div {
         display: flex;
+        margin-bottom: 8px;
 
-        & > * {
+        input,
+        select,
+        textarea {
+          border: 1px solid black;
+          border-radius: 2px;
+          padding: 4px;
+          font-size: 1rem;
+          background-color: white;
+        }
+
+        input,
+        select {
+          height: fit-content;
+        }
+
+        textarea {
+          height: 150px;
+        }
+
+        .DeleteButton {
+          width: 28px;
+          min-width: 28px;
+          height: 28px;
+          min-height: 28px;
+          line-height: 28px;
+          text-align: center;
+          vertical-align: middle;
+          justify-content: center;
+          align-items: center;
+          border: 1px solid black;
+          border-radius: 14px;
+
+          &:hover {
+            cursor: pointer;
+            background-color: white;
+            border-width: 2px;
+            line-height: 26px;
+            font-weight: bold;
+          }
+        }
+
+        & > *:not(button) {
           width: 50%;
 
-          &:first-child {
+          &:not(:last-child) {
             margin-right: 12px;
           }
         }
@@ -47,21 +104,6 @@
         justify-content: center;
         align-items: center;
         flex: 1;
-      }
-    }
-
-    @media only screen and (max-width: 600px) {
-      flex-direction: column;
-
-      .PropsContainer,
-      .ComponentContainer {
-        width: 100%;
-        min-height: 25vh;
-      }
-
-      .PropsContainer {
-        margin-right: 0;
-        margin-bottom: 16px;
       }
     }
   }
