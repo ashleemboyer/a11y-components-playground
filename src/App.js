@@ -5,7 +5,7 @@ import styles from "./App.module.scss";
 
 export default () => (
   <Router>
-    <head className={styles.MainNav}>
+    <header className={styles.MainNav}>
       <h1>A11Y Components Playground</h1>
       <nav>
         <ul>
@@ -17,7 +17,7 @@ export default () => (
           </li>
         </ul>
       </nav>
-    </head>
+    </header>
     <main className={styles.MainContent}>
       <Switch>
         <Route path="/about" component={AboutPage} />
