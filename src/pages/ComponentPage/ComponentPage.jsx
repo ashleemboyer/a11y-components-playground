@@ -70,21 +70,7 @@ const ComponentPage = () => {
       <h2>The {name} Component</h2>
       <div>
         <div className={styles.PropsContainer}>
-          <div>
-            <h3>Properties</h3>
-            <button
-              className={styles.AddButton}
-              onClick={() => {
-                setComponentProps([
-                  ...componentProps,
-                  { name: "", type: "", value: "" },
-                ]);
-                setFocusNewInput(true);
-              }}
-            >
-              Add Property
-            </button>
-          </div>
+          <h3>Properties</h3>
           {componentProps.map((prop, index) => (
             <div key={`prop-${index}`}>
               <input
@@ -141,6 +127,18 @@ const ComponentPage = () => {
               </button>
             </div>
           ))}
+          <button
+            className={styles.AddButton}
+            onClick={() => {
+              setComponentProps([
+                ...componentProps,
+                { name: "", type: "", value: "" },
+              ]);
+              setFocusNewInput(true);
+            }}
+          >
+            Add Property
+          </button>
         </div>
         <div className={styles.ComponentContainer}>
           <h3>Rendered Component</h3>

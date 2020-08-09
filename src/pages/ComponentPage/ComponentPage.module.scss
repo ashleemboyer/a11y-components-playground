@@ -12,33 +12,15 @@
       border-radius: 12px;
       padding: 16px;
 
-      & > *:first-child {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+      h3 {
+        text-align: left;
         margin-bottom: 12px;
-
-        .AddButton {
-          width: fit-content;
-          padding: 0 12px;
-          height: 1.8rem;
-          min-height: 1.8rem;
-          line-height: 1.8rem;
-          font-size: 1rem;
-          border-radius: 1.8rem;
-          background-color: #283593;
-          color: white;
-          border: none;
-
-          &:hover {
-            cursor: pointer;
-          }
-        }
       }
     }
 
     .PropsContainer {
       margin-bottom: 32px;
+      text-align: center;
 
       & > div {
         display: flex;
@@ -91,6 +73,24 @@
           &:not(:last-child) {
             margin-right: 12px;
           }
+        }
+      }
+
+      .AddButton {
+        width: fit-content;
+        margin-top: 32px;
+        padding: 0 12px;
+        height: 1.8rem;
+        min-height: 1.8rem;
+        line-height: 1.8rem;
+        font-size: 1rem;
+        border-radius: 1.8rem;
+        background-color: #283593;
+        color: white;
+        border: none;
+
+        &:hover {
+          cursor: pointer;
         }
       }
     }
