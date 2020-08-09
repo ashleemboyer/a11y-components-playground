@@ -1,0 +1,50 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  background-color: #e8eaf6;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.MainNav {
+  height: 72px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  background-color: #283593;
+  color: white;
+
+  ul {
+    list-style-type: none;
+
+    li {
+      display: inline-block;
+
+      a {
+        display: block;
+        padding: 12px;
+        color: white;
+        text-decoration-style: underline;
+
+        &:hover {
+          text-decoration-style: double;
+        }
+      }
+    }
+  }
+}
+
+.MainContent {
+  padding: 24px;
+}
