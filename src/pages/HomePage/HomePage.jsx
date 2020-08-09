@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import * as Components from "a11y-components";
 import styles from "./HomePage.module.scss";
