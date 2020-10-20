@@ -5,27 +5,25 @@ import '@amb-codes-crafts/a11y-components/dist/index.css';
 import styles from './ComponentPage.module.scss';
 
 const buildComponentProps = (props) => {
-  return Object.entries(props)
-    .filter(([, propTypes]) => propTypes.isRequired)
-    .map(([propTypeName, propTypes]) => {
-      const name = propTypeName;
-      const type = propTypes.type;
+  return Object.entries(props).map(([propTypeName, propTypes]) => {
+    const name = propTypeName;
+    const type = propTypes.type;
 
-      let value;
-      if (type === 'boolean') {
-        value = true;
-      } else if (type === 'func') {
-        value = '() => {}';
-      } else if (type === 'json') {
-        value = '{}';
-      } else if (type === 'arrayOf') {
-        value = '[]';
-      } else {
-        value = '';
-      }
+    let value;
+    if (type === 'boolean') {
+      value = true;
+    } else if (type === 'func') {
+      value = '() => {}';
+    } else if (type === 'json') {
+      value = '{}';
+    } else if (type === 'arrayOf') {
+      value = '[]';
+    } else {
+      value = '';
+    }
 
-      return { name, type, value };
-    });
+    return { name, type, value };
+  });
 };
 
 const getComponentProps = (props) => {
