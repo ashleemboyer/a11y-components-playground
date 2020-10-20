@@ -1,7 +1,7 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import * as Components from "a11y-components";
-import styles from "./HomePage.module.scss";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import * as Components from '@amb-codes-crafts/a11y-components';
+import styles from './HomePage.module.scss';
 
 const HomePage = () => (
   <div className={styles.HomePage}>
