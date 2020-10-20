@@ -1,19 +1,24 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 * {
   box-sizing: border-box;
-  margin: 0;
   padding: 0;
 }
 
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   background-color: #e8eaf6;
+  margin: 0;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+h2 {
+  font-size: 2rem;
+  text-align: center;
 }
 
 $nav-height: 4.5rem;
@@ -66,5 +71,8 @@ $nav-height: 4.5rem;
 }
 
 .MainContent {
+  width: fit-content;
+  max-width: 700px;
+  margin: 0 auto;
   padding: 24px;
 }
