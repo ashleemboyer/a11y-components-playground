@@ -1,22 +1,22 @@
-import React, { useState, useLayoutEffect } from "react";
-import { useParams } from "react-router-dom";
-import * as Components from "a11y-components";
-import styles from "./ComponentPage.module.scss";
+import React, { useState, useLayoutEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import * as Components from '@amb-codes-crafts/a11y-components';
+import styles from './ComponentPage.module.scss';
 
 const getComponentProps = (props) => {
   const componentProps = {};
   props.forEach((prop) => {
-    if (prop.name === "" || prop.type === "" || prop.value === "") {
+    if (prop.name === '' || prop.type === '' || prop.value === '') {
       return;
     }
 
     try {
-      if (prop.type === "boolean") {
-        componentProps[prop.name] = prop.value === "true";
-      } else if (prop.type === "function") {
+      if (prop.type === 'boolean') {
+        componentProps[prop.name] = prop.value === 'true';
+      } else if (prop.type === 'function') {
         // eslint-disable-next-line
         componentProps[prop.name] = eval(prop.value);
-      } else if (prop.type === "json") {
+      } else if (prop.type === 'json') {
         componentProps[prop.name] = JSON.parse(prop.value);
       } else {
         componentProps[prop.name] = prop.value;
@@ -30,35 +30,13 @@ const getComponentProps = (props) => {
 
 const ComponentPage = () => {
   const { name } = useParams();
-  const [componentProps, setComponentProps] = useState([
-    {
-      name: "children",
-      type: "string",
-      value: "Hello!",
-    },
-    {
-      name: "disabled",
-      type: "boolean",
-      value: "true",
-    },
-    {
-      name: "onClick",
-      type: "function",
-      value: "() => {\n  alert('Button clicked!');\n}",
-    },
-    {
-      name: "style",
-      type: "json",
-      value:
-        '{\n  "padding": "8px",\n  "fontSize": "1rem",\n  "fontWeight": "bold",\n  "fontFamily": "serif",\n  "borderWidth": "2px",\n  "borderRadius": "8px"\n}',
-    },
-  ]);
+  const [componentProps, setComponentProps] = useState([]);
   const [focusNewInput, setFocusNewInput] = useState(false);
 
   useLayoutEffect(() => {
     if (focusNewInput) {
       const propIndex = (componentProps.length - 1) * 3;
-      const inputs = document.querySelectorAll("input,select,textarea");
+      const inputs = document.querySelectorAll('input,select,textarea');
       const inputToFocus = inputs[propIndex];
       inputToFocus.focus();
       setFocusNewInput(false);
@@ -95,7 +73,7 @@ const ComponentPage = () => {
                 <option value="json">JSON</option>
                 <option value="function">Function</option>
               </select>
-              {prop.type === "json" || prop.type === "function" ? (
+              {prop.type === 'json' || prop.type === 'function' ? (
                 <textarea
                   value={prop.value}
                   onChange={(e) => {
@@ -132,7 +110,7 @@ const ComponentPage = () => {
             onClick={() => {
               setComponentProps([
                 ...componentProps,
-                { name: "", type: "", value: "" },
+                { name: '', type: '', value: '' },
               ]);
               setFocusNewInput(true);
             }}
