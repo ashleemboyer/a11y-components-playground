@@ -1,7 +1,32 @@
 import React, { useState, useLayoutEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import * as Components from '@amb-codes-crafts/a11y-components';
+import '@amb-codes-crafts/a11y-components/dist/index.css';
 import styles from './ComponentPage.module.scss';
+
+const buildComponentProps = (props) => {
+  return Object.entries(props)
+    .filter(([, propTypes]) => propTypes.isRequired)
+    .map(([propTypeName, propTypes]) => {
+      const name = propTypeName;
+      const type = propTypes.type;
+
+      let value;
+      if (type === 'boolean') {
+        value = true;
+      } else if (type === 'func') {
+        value = '() => {}';
+      } else if (type === 'json') {
+        value = '{}';
+      } else if (type === 'arrayOf') {
+        value = '[]';
+      } else {
+        value = '';
+      }
+
+      return { name, type, value };
+    });
+};
 
 const getComponentProps = (props) => {
   const componentProps = {};
@@ -13,10 +38,11 @@ const getComponentProps = (props) => {
     try {
       if (prop.type === 'boolean') {
         componentProps[prop.name] = prop.value === 'true';
-      } else if (prop.type === 'function') {
+      } else if (prop.type === 'func') {
+        // TODO: make this show a modal with errors
         // eslint-disable-next-line
         componentProps[prop.name] = eval(prop.value);
-      } else if (prop.type === 'json') {
+      } else if (prop.type === 'json' || prop.type === 'arrayOf') {
         componentProps[prop.name] = JSON.parse(prop.value);
       } else {
         componentProps[prop.name] = prop.value;
@@ -30,7 +56,9 @@ const getComponentProps = (props) => {
 
 const ComponentPage = () => {
   const { name } = useParams();
-  const [componentProps, setComponentProps] = useState([]);
+  const [componentProps, setComponentProps] = useState(
+    buildComponentProps(Components[name].publicPropTypes)
+  );
   const [focusNewInput, setFocusNewInput] = useState(false);
 
   useLayoutEffect(() => {
@@ -71,9 +99,10 @@ const ComponentPage = () => {
                 <option value="string">String</option>
                 <option value="boolean">Boolean</option>
                 <option value="json">JSON</option>
-                <option value="function">Function</option>
+                <option value="func">Function</option>
+                <option value="arrayOf">Array</option>
               </select>
-              {prop.type === 'json' || prop.type === 'function' ? (
+              {prop.type === 'json' || prop.type === 'func' ? (
                 <textarea
                   value={prop.value}
                   onChange={(e) => {

@@ -105,17 +105,5 @@
         }
       }
     }
-
-    .ComponentContainer {
-      display: flex;
-      flex-direction: column;
-
-      & > div {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex: 1;
-      }
-    }
   }
 }
