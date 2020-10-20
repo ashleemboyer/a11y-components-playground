@@ -9,7 +9,7 @@ $left-right-padding: $font-size * 0.6;
   }
 
   a {
-    display: block;
+    display: inline-block;
     width: fit-content;
     padding: $top-bottom-padding $left-right-padding;
     font-size: $font-size;
@@ -22,6 +22,10 @@ $left-right-padding: $font-size * 0.6;
 
     &:hover {
       text-decoration: underline;
+    }
+
+    &:not(:last-child) {
+      margin-right: 16px;
     }
   }
 }
