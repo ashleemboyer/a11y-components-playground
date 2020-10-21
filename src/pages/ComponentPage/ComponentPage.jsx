@@ -140,6 +140,7 @@ const ComponentPage = () => {
                 title={`Remove "${prop.name}" prop`}
                 aria-label={`Remove ${prop.name} property`}
                 className={styles.DeleteButton}
+                disabled={prop.isRequired}
                 onClick={() => {
                   componentProps.splice(index, 1);
                   setComponentProps([...componentProps]);
