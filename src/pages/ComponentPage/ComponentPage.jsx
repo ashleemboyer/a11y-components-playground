@@ -8,6 +8,7 @@ const buildComponentProps = (props) => {
   return Object.entries(props).map(([propTypeName, propTypes]) => {
     const name = propTypeName;
     const type = propTypes.type;
+    const isRequired = propTypes.isRequired;
 
     let value;
     if (type === 'boolean') {
@@ -17,12 +18,18 @@ const buildComponentProps = (props) => {
     } else if (type === 'json') {
       value = '{}';
     } else if (type === 'arrayOf') {
-      value = '[]';
+      value = `[${
+        propTypes.shape
+          ? `{${Object.entries(propTypes.shape)
+              .map(([attribute]) => `"${attribute}": ""`)
+              .join(',')}}`
+          : ''
+      }]`;
     } else {
       value = '';
     }
 
-    return { name, type, value };
+    return { name, type, value, isRequired };
   });
 };
 
@@ -100,7 +107,9 @@ const ComponentPage = () => {
                 <option value="func">Function</option>
                 <option value="arrayOf">Array</option>
               </select>
-              {prop.type === 'json' || prop.type === 'func' ? (
+              {prop.type === 'json' ||
+              prop.type === 'func' ||
+              prop.type === 'arrayOf' ? (
                 <textarea
                   value={prop.value}
                   onChange={(e) => {
