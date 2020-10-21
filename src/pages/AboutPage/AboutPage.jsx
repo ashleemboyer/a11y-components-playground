@@ -1,7 +1,8 @@
 import React from 'react';
+import styles from './AboutPage.module.scss';
 
 const AboutPage = () => (
-  <>
+  <div className={styles.AboutPage}>
     <h2>About this Playground</h2>
 
     <h3>First of all</h3>
@@ -66,7 +67,7 @@ const AboutPage = () => (
       </a>{' '}
       live-streaming series.
     </p>
-  </>
+  </div>
 );
 
 export default AboutPage;

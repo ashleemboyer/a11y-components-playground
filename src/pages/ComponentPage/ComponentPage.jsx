@@ -5,25 +5,40 @@ import '@amb-codes-crafts/a11y-components/dist/index.css';
 import styles from './ComponentPage.module.scss';
 
 const buildComponentProps = (props) => {
-  return Object.entries(props).map(([propTypeName, propTypes]) => {
-    const name = propTypeName;
-    const type = propTypes.type;
+  return Object.entries(props)
+    .map(([propTypeName, propTypes]) => {
+      const name = propTypeName;
+      const type = propTypes.type;
+      const isRequired = propTypes.isRequired;
 
-    let value;
-    if (type === 'boolean') {
-      value = true;
-    } else if (type === 'func') {
-      value = '() => {}';
-    } else if (type === 'json') {
-      value = '{}';
-    } else if (type === 'arrayOf') {
-      value = '[]';
-    } else {
-      value = '';
-    }
+      let value;
+      if (type === 'boolean') {
+        value = true;
+      } else if (type === 'func') {
+        value = '() => {}';
+      } else if (type === 'json') {
+        value = '{}';
+      } else if (type === 'arrayOf') {
+        value = `[${
+          propTypes.shape
+            ? `{${Object.entries(propTypes.shape)
+                .map(([attribute]) => `"${attribute}": ""`)
+                .join(',')}}`
+            : ''
+        }]`;
+      } else {
+        value = '';
+      }
 
-    return { name, type, value };
-  });
+      return { name, type, value, isRequired };
+    })
+    .sort((a, b) => {
+      if (a.isRequired && !b.isRequired) {
+        return -1;
+      }
+
+      return 1;
+    });
 };
 
 const getComponentProps = (props) => {
@@ -100,7 +115,9 @@ const ComponentPage = () => {
                 <option value="func">Function</option>
                 <option value="arrayOf">Array</option>
               </select>
-              {prop.type === 'json' || prop.type === 'func' ? (
+              {prop.type === 'json' ||
+              prop.type === 'func' ||
+              prop.type === 'arrayOf' ? (
                 <textarea
                   value={prop.value}
                   onChange={(e) => {
@@ -123,6 +140,7 @@ const ComponentPage = () => {
                 title={`Remove "${prop.name}" prop`}
                 aria-label={`Remove ${prop.name} property`}
                 className={styles.DeleteButton}
+                disabled={prop.isRequired}
                 onClick={() => {
                   componentProps.splice(index, 1);
                   setComponentProps([...componentProps]);

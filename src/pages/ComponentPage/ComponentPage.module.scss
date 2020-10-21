@@ -17,6 +17,7 @@
 
       h3 {
         text-align: left;
+        margin-top: 0;
         margin-bottom: 12px;
       }
     }
@@ -69,12 +70,16 @@
           border: 1px solid black;
           border-radius: 14px;
 
-          &:hover {
+          &:hover:not(:disabled) {
             cursor: pointer;
             background-color: white;
             border-width: 2px;
             line-height: 26px;
             font-weight: bold;
+          }
+
+          &:hover:disabled {
+            cursor: not-allowed;
           }
         }
 

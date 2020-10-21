@@ -32,6 +32,10 @@ $nav-height: 4.5rem;
   background-color: #283593;
   color: white;
 
+  * {
+    margin: 0;
+  }
+
   h1 {
     font-size: 1.8rem;
   }
@@ -71,8 +75,5 @@ $nav-height: 4.5rem;
 }
 
 .MainContent {
-  width: fit-content;
-  max-width: 700px;
-  margin: 0 auto;
   padding: 24px;
 }

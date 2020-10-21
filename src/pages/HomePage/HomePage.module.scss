@@ -3,6 +3,8 @@ $top-bottom-padding: $font-size * 0.2;
 $left-right-padding: $font-size * 0.6;
 
 .HomePage {
+  max-width: 700px;
+  margin: 0 auto;
   text-align: center;
 
   h2 {
